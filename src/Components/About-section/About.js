@@ -1,8 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './About.css';
 import video from '../Pictures/color grade wipe-.mp4';
 
 function About() {
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsSmallScreen(window.innerWidth <= 768); // Adjust breakpoint if needed
+    };
+
+    checkScreenSize(); // initial check
+    window.addEventListener('resize', checkScreenSize);
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
   return (
     <>
       <section className='About-section'>
@@ -22,28 +34,25 @@ function About() {
             </div>
 
             <div className="vid">
-              <video 
-                src={video} 
-                autoPlay 
-                muted 
-                loop 
-                playsInline 
-                className="About-video"
-              />
+              {isSmallScreen ? (
+                <video 
+                  src={video} 
+                  controls 
+                  className="About-video" 
+                />
+              ) : (
+                <video 
+                  src={video} 
+                  autoPlay 
+                  muted 
+                  loop 
+                  playsInline 
+                  className="About-video" 
+                />
+              )}
             </div>
           </div>
         </div>
-
-        {/* <div className="About-skill">
-          <h1>NATIVE IN</h1>
-          <ul>
-            <li>Adobe Premiere Pro</li>
-            <li>Adobe After Effects</li>
-            <li>Adobe Photoshop</li>
-            <li>Adobe Lightroom</li>
-            <li>Canva</li>
-          </ul>
-        </div> */}
       </section>
     </>
   );
