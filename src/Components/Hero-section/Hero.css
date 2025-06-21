@@ -1,0 +1,118 @@
+.Hero-section {
+    width: 100%;
+    height: 100%;
+    /* background-color: #1c1c1c; */
+    /* background-color: #000000; */
+    background: url(../Pictures/VideoTimeline\ bg.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Hero-container {
+    width: 70vw;
+    /* height: 80vh; */
+    margin-bottom: 80px;
+    /* border: 2px solid black; */
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.Hero-img {
+    width: 100%;
+    height: 100%;
+    max-width: 400px;
+    margin-top: 20px;
+    overflow: hidden;
+    border-radius: 12px;
+    /* background-color: #990f02; */
+    /* box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2); */
+}
+
+.Hero-img img {
+    width: 100%;
+    height: 100%;
+    /* Adjust as needed */
+    object-fit: cover;
+    object-position: center;
+    border-radius: 12px;
+}
+
+.Hero-img img:hover {
+
+
+    cursor: pointer;
+}
+
+.Hero-details {
+    /* color: white; */
+    color: #ffffff;
+    margin-left: 20px;
+    /* border: 2px solid white; */
+}
+
+.Hero-details h1 {
+    /* color: white; */
+    color: #ffffff;
+    font-size: 40px;
+    transition: all ease-in-out 0.5s;
+}
+.Hero-details h1 span{
+    color: #990f02;
+    /* border: 2px solid #ffffff; */
+}
+
+.Hero-para {
+    width: 30vw;
+    margin: 15px;
+}
+
+@media screen and (max-width: 1164px) {
+    .Hero-container {
+        width: 100%;
+        flex-direction: column;
+    }
+
+
+
+    .Hero-details {
+        margin: 0;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .Hero-details h1 {
+        text-align: center;
+        /* border: 2px solid white; */
+    }
+
+    .Hero-para {
+        text-align: center;
+        width: 90%;
+        /* border: 2px solid white; */
+    }
+}
+
+/* @media screen and (max-width: 600px) {
+.Hero-img {
+    width: 100%;
+    height: 250px;
+    margin-top: 50px;
+}
+.Hero-img img {
+    width: 250px;
+    height: 200px;
+}
+.Hero-img img:hover {
+    width: 100%;
+    height: 300px;
+
+    cursor: pointer;
+}
+} */
