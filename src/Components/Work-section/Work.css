@@ -73,7 +73,7 @@
     z-index: 10;
     position: relative;
     align-items: center;
-    /* box-shadow: 5px 4px 12px #ffffff; */
+    box-shadow: 5px 4px 12px #ffffff;
 }
 
 .btn{
@@ -141,5 +141,10 @@
     align-items: center;
     justify-content: space-evenly;
     overflow: visible;
+    }
+
+    .btn{
+        height: fit-content;
+        width: fit-content;
     }
 }

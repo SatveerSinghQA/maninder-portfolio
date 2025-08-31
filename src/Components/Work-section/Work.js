@@ -30,7 +30,7 @@ function Work() {
       <section className='Work-section'>
         <div className='Work-heading'>
           <h1>MY WORK</h1>
-          <p style={{color:'yellow'}}>Tap on image to play short videos</p>
+          {/* <p style={{color:'yellow'}}>Tap on image to play videos</p> */}
         </div>
         {/* <div className='Work-heading2'>
           <h1>LONG VIDEOS</h1>
