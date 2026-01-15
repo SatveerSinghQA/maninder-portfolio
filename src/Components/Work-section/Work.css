@@ -32,7 +32,6 @@
     flex-direction: column;
 }
 
-
 .Work-card {
     width: 350px;
     height: 197px;
@@ -146,5 +145,28 @@
     .btn{
         height: fit-content;
         width: fit-content;
+    }
+}
+
+/* NEW: For larger screens, make sizes grow with screen width using vw */
+@media screen and (min-width: 1165px) {
+    .Work-card {
+        width: calc(350px + 5vw); /* Starts at 350px, adds more as screen grows */
+        height: calc(197px + 2.8vw); /* Keeps shape, adds based on width ratio */
+    }
+
+    .Work-img {
+        width: 100%; /* Stays full card width */
+        height: 100%; /* Stays full card height */
+    }
+
+    .Work-img img {
+        width: 97%; /* Keeps relative size */
+        height: 97%; /* Keeps relative size */
+    }
+
+    .Work-img img:hover {
+        width: 100%;
+        height: 100%;
     }
 }
