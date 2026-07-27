@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import "./Work.css"
 import "./Videos.css"
-import s1 from '../Pictures/b&w.webp';
-import s2 from '../Pictures/car.webp';
+// import s1 from '../Pictures/b&w.webp';
+// import s2 from '../Pictures/car.webp';
 import s3 from '../Pictures/chinese.webp';
 import s4 from '../Pictures/girl.webp';
 import s5 from '../Pictures/loki.webp';
