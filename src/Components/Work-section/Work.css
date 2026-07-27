@@ -1,172 +1,208 @@
 .Work-section {
+    --void: #0a0a0a;
+    --panel: #141414;
+    --hairline: rgba(255, 255, 255, 0.08);
+    --text-primary: #f3efe9;
+    --text-muted: #8f8b86;
+    --crimson: #c81c0a;
+
+    --font-display: 'Bebas Neue', 'Arial Narrow', sans-serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
     width: 100%;
-    height: 100%;
-    background-color: #000000;
-    color:#ffffff;
+    background-color: var(--void);
+    color: var(--text-primary);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-        text-align: center;
+    padding: 90px 24px 60px;
+}
+
+.Work-heading {
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.Work-eyebrow {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    color: var(--crimson);
+    margin-bottom: 12px;
+}
+
+.Work-heading h1 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(40px, 6vw, 64px);
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.Work-hint {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-top: 10px;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .Work-container {
     width: 100%;
-    /* height: 90vh; */
-    /* border: 2px solid rgb(0, 0, 0); */
     display: grid;
-    grid-template-columns: auto auto auto;
-    align-items: center;
-    justify-content: space-evenly;
-    /* flex-direction: column; */
-    overflow: visible;
-    
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
 }
 
-.container{
-    width: 100%;
-    margin-bottom: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
+/* --- Work card --- */
 
 .Work-card {
-    width: 350px;
-    height: 197px;
-    margin: 40px 0px 20px 0;
-    /* border: 2px dashed black; */
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    
-} 
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    background: var(--panel);
+}
 
 .Work-img {
     width: 100%;
     height: 100%;
-    /* border: 2px solid #2d2d34; */
+}
+
+.Work-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.Work-card:hover img {
+    transform: scale(1.06);
+}
+
+.Work-overlay {
+    position: absolute;
+    inset: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
-    
+    background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 45%);
+    opacity: 0;
+    transition: opacity 0.25s ease;
 }
 
-
-.Work-img img {
-    width: 97%;
-    height: 97%;
-    border-radius: 15px;
-    transition: all ease-in-out 0.1s;
-    /* border-radius: 20%; */
-    cursor: pointer;
-    /* box-shadow: 5px 4px 12px #ff0000; */
+.Work-card:hover .Work-overlay {
+    opacity: 1;
 }
 
-.Work-img img:hover {
-    width: 100%;
-    height: 100%;
-    z-index: 10;
-    position: relative;
-    align-items: center;
-    box-shadow: 5px 4px 12px #ffffff;
-}
-
-.btn{
-    padding: 0.6rem 1.2rem;
-    background-color: #ff0000;
+.Work-play {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--crimson);
     color: #fff;
-    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: scale(0.85);
+    transition: transform 0.25s ease;
+}
+
+.Work-card:hover .Work-play {
+    transform: scale(1);
+}
+
+/* --- Button --- */
+
+.btn {
+    margin-top: 44px;
+    padding: 12px 28px;
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--hairline);
     cursor: pointer;
-    font-family: inherit;
-    transition: background-color 0.3s ease;
-    border-radius: 5px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    border-radius: 4px;
+    transition: all 0.25s ease;
 }
 
 .btn:hover {
-    background-color: #ffffff;
-    color: #ff0000;
-    box-shadow: 5px 4px 12px #ff0000;
-    transition: all 0.3s ease;
-  }
+    border-color: var(--crimson);
+    color: var(--crimson);
+}
 
+.btn:focus-visible {
+    outline: 2px solid var(--crimson);
+    outline-offset: 3px;
+}
+
+/* --- Responsive --- */
+
+/* Large desktop / ultrawide guard */
+@media screen and (min-width: 1600px) {
+    .container {
+        max-width: 1400px;
+    }
+}
 
 @media screen and (max-width: 1164px) {
     .Work-container {
-        width: 100%;
-    height: 100%;
-    /* border: 2px solid rgb(0, 0, 0); */
-    display: grid;
-    grid-template-columns: auto auto ;
-    align-items: center;
-    justify-content: space-evenly;
-    /* flex-direction: column; */
-    overflow: visible;
-    }
-
-
-
-    .Work-img img {
-        max-width: 100%;
-        max-height: 100%;
-        transition: all ease-in-out 0.5s;
-        /* border-radius: 20px; */
-    }
-    .Work-img button {
-        background-color: #2c514c;
-        height: 30px;
-        width: 50%;
-        color: #fcfcfc;
-        margin-top: 5px;
-        border-radius: 5px;
-        /* border: none; */
-        transition: all ease-in-out 0.5s;
-        /* font-size: large; */
-    }
-
-    .Work-card {
-        margin: 10px;
-        margin-bottom: 10px;
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
-@media screen and (max-width: 800px) {
+/* Tablet — tighten gap right before the 2-col jump */
+@media screen and (max-width: 1000px) {
     .Work-container {
-    display: grid;
-    grid-template-columns: auto ;
-    align-items: center;
-    justify-content: space-evenly;
-    overflow: visible;
-    }
-
-    .btn{
-        height: fit-content;
-        width: fit-content;
+        gap: 20px;
     }
 }
 
-/* NEW: For larger screens, make sizes grow with screen width using vw */
-@media screen and (min-width: 1165px) {
-    .Work-card {
-        width: calc(350px + 5vw); /* Starts at 350px, adds more as screen grows */
-        height: calc(197px + 2.8vw); /* Keeps shape, adds based on width ratio */
+@media screen and (max-width: 640px) {
+    .Work-section {
+        padding: 60px 16px 40px;
     }
 
-    .Work-img {
-        width: 100%; /* Stays full card width */
-        height: 100%; /* Stays full card height */
+    .Work-container {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .Work-heading h1 {
+        font-size: clamp(32px, 10vw, 40px);
     }
 
-    .Work-img img {
-        width: 97%; /* Keeps relative size */
-        height: 97%; /* Keeps relative size */
+    .Work-eyebrow {
+        font-size: 11px;
     }
 
-    .Work-img img:hover {
+    .Work-hint {
+        font-size: 13px;
+    }
+
+    .btn {
         width: 100%;
-        height: 100%;
+        padding: 12px 0;
     }
 }
