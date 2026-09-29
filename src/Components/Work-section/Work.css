@@ -1,3 +1,8 @@
+/* Universal box-sizing rule to keep paddings and borders inside elements */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 .Work-section {
     --void: #0a0a0a;
     --panel: #141414;
@@ -10,7 +15,9 @@
     --font-body: 'Inter', system-ui, sans-serif;
     --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 
-    width: auto;
+    /* Fixed: set width to 100% and max-width to prevents parent overflow */
+    width: 100%;
+    max-width: 100vw;
     background-color: var(--void);
     color: var(--text-primary);
     display: flex;
@@ -18,6 +25,7 @@
     justify-content: center;
     flex-direction: column;
     padding: 90px 24px 60px;
+    overflow-x: hidden;
 }
 
 .Work-heading {
@@ -63,7 +71,8 @@
 .Work-container {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    /* Responsive auto-fit grid prevents overflow on all viewports */
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
     gap: 24px;
 }
 
@@ -157,20 +166,12 @@
 
 /* --- Responsive --- */
 
-/* Large desktop / ultrawide guard */
 @media screen and (min-width: 1600px) {
     .container {
         max-width: 1400px;
     }
 }
 
-@media screen and (max-width: 1164px) {
-    .Work-container {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-/* Tablet — tighten gap right before the 2-col jump */
 @media screen and (max-width: 1000px) {
     .Work-container {
         gap: 20px;
@@ -183,7 +184,6 @@
     }
 
     .Work-container {
-        grid-template-columns: 1fr;
         gap: 18px;
     }
 }
