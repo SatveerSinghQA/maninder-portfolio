@@ -8,7 +8,8 @@ import defaultFallbackImg from '../Pictures/youtube_thumbnail_maxres.jpg';
 // Helper function to extract 11-character YouTube Video ID
 function getYouTubeId(url) {
   if (!url) return null;
-  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+  // Replace this line in Videos.js and Work.js:
+const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|shorts\/|watch\?v=|&v=)([^#&?]*).*/;
   const match = url.match(regExp);
   return (match && match[2].length === 11) ? match[2] : null;
 }
