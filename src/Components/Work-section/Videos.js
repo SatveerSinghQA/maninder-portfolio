@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import "./Work.css";
 import "./Videos.css";
 
-import s4 from '../Pictures/girl.webp';
+// import s4 from '../Pictures/girl.webp';
 import s6 from '../Pictures/loki 2.webp';
 import s10 from '../Pictures/socks.webp';
 import VideoCard from './VideoCard';
