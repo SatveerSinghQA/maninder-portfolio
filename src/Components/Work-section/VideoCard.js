@@ -1,15 +1,29 @@
-import React from 'react'
-import './Videos.css'
+import React from 'react';
+import './Videos.css';
 
-function VideoCard(props) {
-  const openImage = () => {
-    window.open(props.href, "_blank");
+function VideoCard({ img, href, altText }) {
+  const openVideo = () => {
+    window.open(href, '_blank', 'noopener,noreferrer');
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      openVideo();
+    }
   };
 
   return (
-    <div className="Video-card" onClick={openImage}>
+    <div
+      className="Video-card"
+      onClick={openVideo}
+      onKeyDown={handleKeyDown}
+      tabIndex={0}
+      role="button"
+      aria-label="Play video"
+    >
       <div className="Video-img">
-        <img src={props.img} alt="" />
+        <img src={img} alt={altText || 'Short video thumbnail'} loading="lazy" />
         <div className="Video-overlay">
           <span className="Video-play">
             <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
@@ -19,7 +33,7 @@ function VideoCard(props) {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default VideoCard
+export default VideoCard;

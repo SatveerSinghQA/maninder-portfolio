@@ -1,113 +1,121 @@
-/* Videos.css relies on the tokens (--void, --crimson, etc.) already
-   defined on .Work-section in Work.css, since both classes are
-   present on the same DOM tree. */
-
-.Video-container {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+/* Container layout and max-width restriction */
+.container {
+  width: 100%;
+  max-width: 1100px; /* Prevents cards from growing excessively large on big screens */
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  padding: 0 16px;
 }
 
+/* Responsive Fluid Grid */
+.Video-container {
+  width: 100%;
+  display: grid;
+  /* Dynamically fits as many ~180px-240px wide cards as possible per row */
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+  justify-content: center;
+}
+
+/* Individual Card Styling */
 .Video-card {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 9 / 16;
-    border-radius: 14px;
-    overflow: hidden;
-    cursor: pointer;
-    background: var(--panel);
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  background: var(--panel, #121212);
+  outline: none;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.Video-card:hover,
+.Video-card:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35);
 }
 
 .Video-img {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
+  position: relative;
 }
 
 .Video-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.4s ease;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
 }
 
-.Video-card:hover img {
-    transform: scale(1.06);
+.Video-card:hover .Video-img img {
+  transform: scale(1.05);
 }
 
+/* Play Overlay */
 .Video-overlay {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 45%);
-    opacity: 0;
-    transition: opacity 0.25s ease;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0) 50%);
+  opacity: 0;
+  transition: opacity 0.25s ease;
 }
 
-.Video-card:hover .Video-overlay {
-    opacity: 1;
+.Video-card:hover .Video-overlay,
+.Video-card:focus-visible .Video-overlay {
+  opacity: 1;
 }
 
 .Video-play {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: var(--crimson);
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transform: scale(0.85);
-    transition: transform 0.25s ease;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--crimson, #e50914);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: scale(0.85);
+  transition: transform 0.25s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 .Video-card:hover .Video-play {
-    transform: scale(1);
+  transform: scale(1);
 }
 
-/* --- Responsive --- */
+/* Responsive Fine-Tuning */
 
-@media screen and (min-width: 1600px) {
-    .Video-container {
-        gap: 24px;
-    }
+/* Mobile Phones (up to 500px) */
+@media screen and (max-width: 500px) {
+  .Video-container {
+    /* Fixed 2 columns on small mobile devices so thumbnails remain compact */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .Video-card {
+    border-radius: 10px;
+  }
+
+  .Video-play {
+    width: 36px;
+    height: 36px;
+  }
 }
 
-@media screen and (max-width: 1300px) {
-    .Video-container {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media screen and (max-width: 900px) {
-    .Video-container {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 16px;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .Video-container {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-    }
-
-    .Video-card {
-        border-radius: 10px;
-    }
-
-    .Video-play {
-        width: 32px;
-        height: 32px;
-    }
-}
-
-@media screen and (max-width: 340px) {
-    .Video-container {
-        grid-template-columns: 1fr 1fr;
-        gap: 8px;
-    }
+/* Very Small Mobile Phones (below 350px) */
+@media screen and (max-width: 350px) {
+  .Video-container {
+    gap: 8px;
+  }
 }
