@@ -1,33 +1,49 @@
 import React, { useState } from 'react';
-import "./Work.css"
-import WorkCard from './WorkCard'
-import s1 from '../Pictures/youtube_thumbnail_maxres.jpg'
-import s2 from '../Pictures/monkey man thumbnail;.png'
-import s3 from '../Pictures/Podcast.png'
-import s4 from '../Pictures/thriller series thumbnail.png'
-import s5 from '../Pictures/KALKI FINAL AA THUMBNAIL.png'
-import s6 from '../Pictures/Untitled-1-Recovered.png'
-import s7 from '../Pictures/Untitled-1.png'
+import "./Work.css";
+import WorkCard from './WorkCard';
+
+// Fallback image for non-YouTube links (e.g. Google Drive links)
+import defaultFallbackImg from '../Pictures/youtube_thumbnail_maxres.jpg';
+
+// Helper function to extract 11-character YouTube Video ID
+function getYouTubeId(url) {
+  if (!url) return null;
+  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+  const match = url.match(regExp);
+  return (match && match[2].length === 11) ? match[2] : null;
+}
+
+// Helper function to resolve thumbnail URL (auto YouTube thumbnail or manual fallback)
+function getThumbnail(item) {
+  const videoId = getYouTubeId(item.url);
+  
+  if (videoId) {
+    // Automatically uses YouTube's high-quality thumbnail
+    return `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+  }
+  
+  // If a manual image was specified in item.label, use that; otherwise use default fallback
+  return item.label || defaultFallbackImg;
+}
 
 function Work() {
+  const [showAll, setShowAll] = useState(false);
 
-    const [showAll, setShowAll] = useState(false);
+  // You can now put YouTube URLs directly, or keep custom images/Drive links
+  const items = [
+    { url: 'https://youtu.be/LTFSt8gbY64?si=pefjbW6Mqmk6kDIo' },
+    { url: 'https://youtu.be/VhlxNBGGMAw?si=6m3Em0Q98GipeHc0' },
+    { url: 'https://drive.google.com/file/d/1WMTAyAnIzG-se7lCIbpSN90-7Yv28qrg/view?usp=drive_link'},
+    // { url: 'https://www.youtube.com/watch?v=L_LUpnjgPso' },
+    // { url: 'https://drive.google.com/file/d/1WMTAyAnIzG-se7lCIbpSN90-7Yv28qrg/view' },
+  ];
 
-    const items = [
-      { label: s1, url: 'https://drive.google.com/file/d/1KA5Dk92FaY1JzOYDQZJGY9_jzrL-7lJp/view?usp=drive_link' },
-      { label: s2, url: 'https://example.com/alpha' },
-      { label: s3, url: 'https://drive.google.com/file/d/1WMTAyAnIzG-se7lCIbpSN90-7Yv28qrg/view?usp=drive_link' },
-      { label: s4, url: 'https://example.com/alpha' },
-      { label: s5, url: 'https://drive.google.com/file/d/1cPswI3lvY_89yMKzEhy3pZiPEwLq5BLK/view?usp=drive_link' },
-      { label: s6, url: 'https://drive.google.com/file/d/1qFK7rJEC8hWvb9UDb9AnloqNZpr10SJD/view?usp=drive_link' },
-      { label: s7, url: 'https://drive.google.com/file/d/1EOlcFQQ4I0DU4Ws30DGhCbxdjtpKqE8r/view?usp=drive_link' },
-    ];
-    const visibleItems = showAll ? items : items.slice(0, 6);
+  const visibleItems = showAll ? items : items.slice(0, 6);
 
   return (
     <section className='Work-section'>
       <div className='Work-heading'>
-        <span className="Work-eyebrow">02 / SELECTS</span>
+        <span className="Work-eyebrow">03 / SELECTS</span>
         <h1>My Work</h1>
         <p className="Work-hint">Tap a thumbnail to play</p>
       </div>
@@ -35,16 +51,22 @@ function Work() {
       <div className="container">
         <div className='Work-container'>
           {visibleItems.map((item, index) => (
-            <WorkCard key={index} img={item.label} href={item.url} />
+            <WorkCard 
+              key={index} 
+              img={getThumbnail(item)} 
+              href={item.url} 
+            />
           ))}
         </div>
 
-        <button className='btn' onClick={() => setShowAll(prev => !prev)}>
-          {showAll ? 'Show less' : 'Show more'}
-        </button>
+        {items.length > 6 && (
+          <button className='btn' onClick={() => setShowAll(prev => !prev)}>
+            {showAll ? 'Show less' : 'Show more'}
+          </button>
+        )}
       </div>
     </section>
-  )
+  );
 }
 
-export default Work
+export default Work;

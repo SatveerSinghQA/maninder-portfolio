@@ -10,7 +10,7 @@
     --font-body: 'Inter', system-ui, sans-serif;
     --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 
-    width: 100%;
+    width: auto;
     background-color: var(--void);
     display: flex;
     align-items: center;
