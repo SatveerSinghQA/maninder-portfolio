@@ -4,6 +4,7 @@ import WorkCard from './WorkCard';
 
 // Fallback image for non-YouTube links (e.g. Google Drive links)
 import defaultFallbackImg from '../Pictures/youtube_thumbnail_maxres.jpg';
+import s4 from '../Pictures/Podcast.png';
 
 // Helper function to extract 11-character YouTube Video ID
 function getYouTubeId(url) {
@@ -34,7 +35,7 @@ function Work() {
   const items = [
     { url: 'https://youtu.be/LTFSt8gbY64?si=pefjbW6Mqmk6kDIo' },
     { url: 'https://youtu.be/VhlxNBGGMAw?si=6m3Em0Q98GipeHc0' },
-    { url: 'https://drive.google.com/file/d/1WMTAyAnIzG-se7lCIbpSN90-7Yv28qrg/view?usp=drive_link'},
+    { label: s4,url: 'https://drive.google.com/file/d/1WMTAyAnIzG-se7lCIbpSN90-7Yv28qrg/view?usp=drive_link'},
     // { url: 'https://www.youtube.com/watch?v=L_LUpnjgPso' },
     // { url: 'https://drive.google.com/file/d/1WMTAyAnIzG-se7lCIbpSN90-7Yv28qrg/view' },
   ];
