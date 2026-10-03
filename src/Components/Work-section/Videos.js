@@ -3,8 +3,8 @@ import "./Work.css";
 import "./Videos.css";
 
 // import s4 from '../Pictures/girl.webp';
-import s6 from '../Pictures/loki 2.webp';
-import s10 from '../Pictures/socks.webp';
+// import s6 from '../Pictures/loki 2.webp';
+// import s10 from '../Pictures/socks.webp';
 import VideoCard from './VideoCard';
 
 // Helper function to extract 11-character YouTube or Shorts Video ID
@@ -48,8 +48,8 @@ function Videos() {
   
   
     { url: 'https://youtube.com/shorts/tLgqveNpq3Q?si=0LsiCD-hjfVWqxBD' },
-    { label: s6, url: 'https://drive.google.com/file/d/1AIdqs09ZRBTgVWyLGhWuxQ6GE-E4XlRT/view' },
-    { label: s10, url: 'https://drive.google.com/file/d/1FAbJSnr1CGmFQIv7rRy2E3wMAcIikpAj/view?usp=drive_link' },
+    // { label: s6, url: 'https://drive.google.com/file/d/1AIdqs09ZRBTgVWyLGhWuxQ6GE-E4XlRT/view' },
+    // { label: s10, url: 'https://drive.google.com/file/d/1FAbJSnr1CGmFQIv7rRy2E3wMAcIikpAj/view?usp=drive_link' },
   ];
 
   const visibleItems = showAll ? items : items.slice(0, 5);
